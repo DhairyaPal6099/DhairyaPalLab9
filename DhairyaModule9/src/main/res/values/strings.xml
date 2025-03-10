@@ -7,7 +7,7 @@
     <string name="nav_header_title">Dhairya Pal</string>
     <string name="nav_header_subtitle">n01576099@humber.ca</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Options</string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
 </resources>

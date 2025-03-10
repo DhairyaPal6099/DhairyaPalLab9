@@ -5,5 +5,16 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/dhaActionBarToggleMode"
+                android:title="Dha"
+                android:icon="@drawable/ic_actionbar_togglemode" />
+            <item
+                android:id="@+id/dhaActionBarSearch"
+                android:title="Pal"
+                android:icon="@drawable/ic_actionbar_search" />
+        </menu>
+    </item>
 </menu>
