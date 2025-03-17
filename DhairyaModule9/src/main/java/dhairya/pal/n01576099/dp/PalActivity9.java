@@ -1,18 +1,29 @@
 package dhairya.pal.n01576099.dp;
 
+import android.app.SearchManager;
 import android.app.UiModeManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -79,7 +90,6 @@ public class PalActivity9 extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.dhaActionBarToggleMode) {
-            //TODO: Change the UI theme
             currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
             SharedPreferences preferences = getSharedPreferences("settings", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
@@ -93,6 +103,22 @@ public class PalActivity9 extends AppCompatActivity {
             }
             editor.apply();
             recreate();
+        } else if (item.getItemId() == R.id.dhaActionBarSearch) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            EditText editText = new EditText(this);
+            builder.setView(editText);
+            builder.setPositiveButton("SEARCH", (dialogInterface, i) -> {
+                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                intent.putExtra(SearchManager.QUERY, editText.getText().toString());
+                intent.setPackage("com.google.android.googlequicksearchbox");
+                startActivity(intent);
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button search = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+            search.setBackgroundColor(getResources().getColor(R.color.theme_color, getTheme()));
+            search.setTextColor(getResources().getColor(R.color.white, getTheme()));
+            //TODO: Make the search button appear to the left, and no rounded edges, as per the requirements.
         }
         return true;
     }
