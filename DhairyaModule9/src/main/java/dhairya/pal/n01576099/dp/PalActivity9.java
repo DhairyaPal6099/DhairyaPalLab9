@@ -15,7 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import dhairya.pal.n01576099.dp.databinding.ActivityMainBinding;
-
+//TODO: ChANGE THE README IMAGE AS PER REQUIREMENTS
 public class PalActivity9 extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
