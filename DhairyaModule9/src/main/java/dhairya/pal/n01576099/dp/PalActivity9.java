@@ -2,6 +2,7 @@ package dhairya.pal.n01576099.dp;
 
 import android.app.UiModeManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,6 +21,10 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+
 import dhairya.pal.n01576099.dp.databinding.ActivityMainBinding;
 //TODO: ChANGE THE README IMAGE AS PER REQUIREMENTS
 public class PalActivity9 extends AppCompatActivity {
@@ -26,8 +32,15 @@ public class PalActivity9 extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
+    private int currentNightMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Get dark_mode status from shared prefs
+        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+        currentNightMode = prefs.getInt("dark_mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        AppCompatDelegate.setDefaultNightMode(currentNightMode);
+
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -45,6 +58,8 @@ public class PalActivity9 extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
     }
 
     @Override
@@ -65,13 +80,18 @@ public class PalActivity9 extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.dhaActionBarToggleMode) {
             //TODO: Change the UI theme
-            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            SharedPreferences preferences = getSharedPreferences("settings", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
 
             if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                editor.putInt("dark_mode", AppCompatDelegate.MODE_NIGHT_NO);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                editor.putInt("dark_mode", AppCompatDelegate.MODE_NIGHT_YES);
             }
+            editor.apply();
             recreate();
         }
         return true;
