@@ -21,7 +21,10 @@
 
     <style name="Theme.DhairyaLab9.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.DhairyaLab9.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.DhairyaLab9.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <!-- Base application theme. -->
     <style name="Base.Theme.DhairyaLab9" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
