@@ -16,7 +16,7 @@
             android:id="@+id/dhaCourseName"
             android:padding="8dp"
             android:text="Course Name"
-            android:textColor="@color/black"
+            android:textColor="?attr/android:textColorPrimary"
             android:textSize="18sp" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_below="@id/dhaCourseName"
             android:padding="5dp"
             android:text="Course Description"
-            android:textColor="@color/black" />
+            android:textColor="?attr/android:textColorPrimary" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

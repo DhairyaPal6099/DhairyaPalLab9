@@ -19,7 +19,6 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import dhairya.pal.n01576099.dp.PalActivity9;
 import dhairya.pal.n01576099.dp.databinding.FragmentDh1airyaBinding;
 
 public class Dh1airya extends Fragment {

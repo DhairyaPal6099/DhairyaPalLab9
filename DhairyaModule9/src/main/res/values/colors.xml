@@ -10,4 +10,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="lightBlue">#A0D9E7</color>
+    <color name="faintPink">#EBDCFF</color>
 </resources>

@@ -1,28 +1,18 @@
 package dhairya.pal.n01576099.dp;
 
 import android.app.SearchManager;
-import android.app.UiModeManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -33,10 +23,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
 
 import dhairya.pal.n01576099.dp.databinding.ActivityMainBinding;
 //TODO: ChANGE THE README IMAGE AS PER REQUIREMENTS
