@@ -12,6 +12,6 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="dhairya.pal.n01576099.dp.ui.gallery.GalleryFragment"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="dhairya.pal.n01576099.dp.Pa2l"
+        tools:layout="@layout/fragment_pa2l" />
 </navigation>
