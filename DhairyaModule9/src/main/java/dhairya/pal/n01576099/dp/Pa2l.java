@@ -1,12 +1,16 @@
 package dhairya.pal.n01576099.dp;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -15,23 +19,30 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import dhairya.pal.n01576099.dp.databinding.FragmentPa2lBinding;
 
 public class Pa2l extends Fragment {
-
     private ToggleButton fileType;
+    LinearLayout linearLayout;
     private EditText fileName, fileContents;
     private FragmentPa2lBinding binding;
+    int counter = 0;
+    ArrayList<TextView> textViews = new ArrayList<>();
+    ArrayList<String> fileNames;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +51,7 @@ public class Pa2l extends Fragment {
 
         fileName = binding.activityInternalstorageFilename;
         fileContents = binding.activityInternalstorageFilecontents;
+        linearLayout = binding.dhaLinearLayout;
 
         fileType = binding.activityInternalstorageFiletype;
         fileType.setChecked(true);
@@ -66,7 +78,23 @@ public class Pa2l extends Fragment {
         }
     }
 
+    private void fileContentsMissingCheck() {
+        if (fileContents.getText().toString().isEmpty()) {
+            Toast.makeText(getContext(), "Dhairya Pal content missing", Toast.LENGTH_LONG).show();
+        }
+    }
+
     private void createFile(Context context, boolean isPersistent) {
+        if (textViews != null) {
+            if (textViews.size() >= 3) {
+                linearLayout.removeAllViews();
+                textViews.remove(0);
+                for (TextView textView : textViews) {
+                    linearLayout.addView(textView);
+                }
+            }
+        }
+
         fileNameMissingCheck();
         File file;
         if (isPersistent) {
@@ -85,10 +113,30 @@ public class Pa2l extends Fragment {
         } else {
             Toast.makeText(context, String.format("File %s already exists", fileName.getText().toString()), Toast.LENGTH_SHORT).show();
         }
+
+
+        //Show file name logic
+        Random random = new Random();
+        int randomColor = Color.rgb(random.nextInt(256), random.nextInt(256), random.nextInt(256));
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        TextView textViewx = new TextView(context);
+        textViewx.setText(fileName.getText());
+        textViewx.setTypeface(null, Typeface.BOLD_ITALIC);
+        textViewx.setTextSize(20);
+        textViewx.setTextColor(randomColor);
+        textViewx.setLayoutParams(layoutParams);
+        linearLayout.addView(textViewx);
+        textViews.add(textViewx);
     }
 
     private void writeFile(Context context, boolean isPersistent) {
         fileNameMissingCheck();
+        fileContentsMissingCheck();
         try {
             FileOutputStream fileOutputStream;
             if (isPersistent) {
@@ -137,6 +185,17 @@ public class Pa2l extends Fragment {
 
     private void deleteFile(Context context, boolean isPersistent) {
         fileNameMissingCheck();
+        linearLayout.removeAllViews();
+        for (TextView x : textViews) {
+            if (x.getText().equals(fileName.getText().toString())) {
+                textViews.remove(x);
+            }
+        }
+        for (TextView textView : textViews) {
+            linearLayout.addView(textView);
+        }
+
+
         File file;
         if (isPersistent) {
             file = new File(context.getFilesDir(), fileName.getText().toString());
