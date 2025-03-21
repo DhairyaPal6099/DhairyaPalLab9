@@ -53,4 +53,12 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="splash_screen_text2">by Dhairya Pal N01576099 ©</string>
+    <string name="courses">courses</string>
+    <string name="course_stuff">course stuff</string>
+    <string name="no_data_to_delete">No data to delete</string>
+    <string name="coursesx">courses</string>
+    <string name="course_stuffy">course stuff</string>
+    <string name="saved_array_list_to_shared_preferences">"Saved Array list to shared preferences. "</string>
+    <string name="coursessss">courses</string>
+    <string name="course_stuffxy">course stuff</string>
 </resources>

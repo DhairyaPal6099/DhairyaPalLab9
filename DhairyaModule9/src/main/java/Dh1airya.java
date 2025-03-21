@@ -19,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import dhairya.pal.n01576099.dp.R;
 import dhairya.pal.n01576099.dp.databinding.FragmentDh1airyaBinding;
 
 public class Dh1airya extends Fragment {
@@ -63,20 +64,20 @@ public class Dh1airya extends Fragment {
     }
 
     private void saveData() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("course stuff", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.course_stuffxy), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         Gson gson = new Gson();
         String json = gson.toJson(courseModalArrayList);
-        editor.putString("courses", json);
+        editor.putString(getString(R.string.coursessss), json);
         editor.apply();
-        Toast.makeText(getActivity(), "Saved Array list to shared preferences. ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), getString(R.string.saved_array_list_to_shared_preferences), Toast.LENGTH_SHORT).show();
     }
 
     private void loadData() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("course stuff", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.course_stuffy), Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("courses", null);
+        String json = sharedPreferences.getString(getString(R.string.coursesx), null);
         Type type = new TypeToken<ArrayList<CourseModal>>() {}.getType();
 
         courseModalArrayList = gson.fromJson(json, type);
@@ -98,14 +99,14 @@ public class Dh1airya extends Fragment {
 
     private void deleteData() {
         if (courseModalArrayList.isEmpty()) {
-            Toast.makeText(getActivity(), "No data to delete", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.no_data_to_delete), Toast.LENGTH_SHORT).show();
         } else {
             courseModalArrayList.clear();
             adapter.notifyItemRangeRemoved(0, courseModalArrayList.size());
         }
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("course stuff", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(getString(R.string.course_stuff), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("courses");
+        editor.remove(getString(R.string.courses));
         editor.apply();
 
         buildRecyclerView(); //To see the deleted changes real time
